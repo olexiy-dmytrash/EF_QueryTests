@@ -1,0 +1,2037 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TSQL2012Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Dim1">
+          <Key>
+            <PropertyRef Name="key1" />
+          </Key>
+          <Property Name="key1" Type="int" Nullable="false" />
+          <Property Name="attr1" Type="int" Nullable="false" />
+          <Property Name="filler" Type="binary" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dim2">
+          <Key>
+            <PropertyRef Name="key2" />
+          </Key>
+          <Property Name="key2" Type="int" Nullable="false" />
+          <Property Name="attr1" Type="int" Nullable="false" />
+          <Property Name="filler" Type="binary" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dim3">
+          <Key>
+            <PropertyRef Name="key3" />
+          </Key>
+          <Property Name="key3" Type="int" Nullable="false" />
+          <Property Name="attr1" Type="int" Nullable="false" />
+          <Property Name="filler" Type="binary" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Documents">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="doctype" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="docexcerpt" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="doccontent" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fact">
+          <Key>
+            <PropertyRef Name="key1" />
+            <PropertyRef Name="key2" />
+            <PropertyRef Name="key3" />
+          </Key>
+          <Property Name="key1" Type="int" Nullable="false" />
+          <Property Name="key2" Type="int" Nullable="false" />
+          <Property Name="key3" Type="int" Nullable="false" />
+          <Property Name="measure1" Type="int" Nullable="false" />
+          <Property Name="measure2" Type="int" Nullable="false" />
+          <Property Name="measure3" Type="int" Nullable="false" />
+          <Property Name="filler" Type="binary" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TSQL2012.dbo.MyOrders' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MyOrders">
+          <Key>
+            <PropertyRef Name="orderid" />
+            <PropertyRef Name="empid" />
+            <PropertyRef Name="orderdate" />
+            <PropertyRef Name="requireddate" />
+            <PropertyRef Name="shipperid" />
+            <PropertyRef Name="freight" />
+            <PropertyRef Name="shipname" />
+            <PropertyRef Name="shipaddress" />
+            <PropertyRef Name="shipcity" />
+            <PropertyRef Name="shipcountry" />
+          </Key>
+          <Property Name="orderid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="custid" Type="int" />
+          <Property Name="empid" Type="int" Nullable="false" />
+          <Property Name="orderdate" Type="datetime" Nullable="false" />
+          <Property Name="requireddate" Type="datetime" Nullable="false" />
+          <Property Name="shippeddate" Type="datetime" />
+          <Property Name="shipperid" Type="int" Nullable="false" />
+          <Property Name="freight" Type="money" Nullable="false" />
+          <Property Name="shipname" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="shipaddress" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="shipcity" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="shipregion" Type="nvarchar" MaxLength="15" />
+          <Property Name="shippostalcode" Type="nvarchar" MaxLength="10" />
+          <Property Name="shipcountry" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TSQL2012.dbo.MyTestForDelete' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MyTestForDelete">
+          <Key>
+            <PropertyRef Name="n" />
+            <PropertyRef Name="orderid" />
+            <PropertyRef Name="empid" />
+            <PropertyRef Name="orderdate" />
+            <PropertyRef Name="requireddate" />
+            <PropertyRef Name="shipperid" />
+            <PropertyRef Name="freight" />
+            <PropertyRef Name="shipname" />
+            <PropertyRef Name="shipaddress" />
+            <PropertyRef Name="shipcity" />
+            <PropertyRef Name="shipcountry" />
+          </Key>
+          <Property Name="n" Type="int" Nullable="false" />
+          <Property Name="orderid" Type="int" Nullable="false" />
+          <Property Name="custid" Type="int" />
+          <Property Name="empid" Type="int" Nullable="false" />
+          <Property Name="orderdate" Type="datetime" Nullable="false" />
+          <Property Name="requireddate" Type="datetime" Nullable="false" />
+          <Property Name="shippeddate" Type="datetime" />
+          <Property Name="shipperid" Type="int" Nullable="false" />
+          <Property Name="freight" Type="money" Nullable="false" />
+          <Property Name="shipname" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="shipaddress" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="shipcity" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="shipregion" Type="nvarchar" MaxLength="15" />
+          <Property Name="shippostalcode" Type="nvarchar" MaxLength="10" />
+          <Property Name="shipcountry" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nums">
+          <Key>
+            <PropertyRef Name="n" />
+          </Key>
+          <Property Name="n" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T1">
+          <Key>
+            <PropertyRef Name="keycol" />
+          </Key>
+          <Property Name="keycol" Type="int" Nullable="false" />
+          <Property Name="col1" Type="int" Nullable="false" />
+          <Property Name="col2" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="actid" />
+            <PropertyRef Name="tranid" />
+          </Key>
+          <Property Name="actid" Type="int" Nullable="false" />
+          <Property Name="tranid" Type="int" Nullable="false" />
+          <Property Name="val" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkOut">
+          <Key>
+            <PropertyRef Name="DateOut" />
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="DateOut" Type="datetime" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="empid" />
+          </Key>
+          <Property Name="empid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lastname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="firstname" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="titleofcourtesy" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="birthdate" Type="datetime" Nullable="false" />
+          <Property Name="hiredate" Type="datetime" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="region" Type="nvarchar" MaxLength="15" />
+          <Property Name="postalcode" Type="nvarchar" MaxLength="10" />
+          <Property Name="country" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="24" Nullable="false" />
+          <Property Name="mgrid" Type="int" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="categoryid" />
+          </Key>
+          <Property Name="categoryid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryname" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TSQL2012.Production.CategoriesTest' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CategoriesTest">
+          <Key>
+            <PropertyRef Name="categoryid" />
+            <PropertyRef Name="categoryname" />
+            <PropertyRef Name="description" />
+            <PropertyRef Name="categorystatus" />
+          </Key>
+          <Property Name="categoryid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryname" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="categorystatus" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="productid" />
+          </Key>
+          <Property Name="productid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productname" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="supplierid" Type="int" Nullable="false" />
+          <Property Name="categoryid" Type="int" Nullable="false" />
+          <Property Name="unitprice" Type="money" Nullable="false" />
+          <Property Name="discontinued" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="supplierid" />
+          </Key>
+          <Property Name="supplierid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="companyname" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="contactname" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="contacttitle" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="region" Type="nvarchar" MaxLength="15" />
+          <Property Name="postalcode" Type="nvarchar" MaxLength="10" />
+          <Property Name="country" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="24" Nullable="false" />
+          <Property Name="fax" Type="nvarchar" MaxLength="24" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="custid" />
+          </Key>
+          <Property Name="custid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="companyname" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="contactname" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="contacttitle" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="region" Type="nvarchar" MaxLength="15" />
+          <Property Name="postalcode" Type="nvarchar" MaxLength="10" />
+          <Property Name="country" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="24" Nullable="false" />
+          <Property Name="fax" Type="nvarchar" MaxLength="24" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'TSQL2012.Sales.FreightTotals' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="FreightTotals">
+          <Property Name="custid" Type="int" />
+          <Property Name="1" Type="money" />
+          <Property Name="2" Type="money" />
+          <Property Name="3" Type="money" />
+        </EntityType>-->
+        <EntityType Name="MyCustomers">
+          <Key>
+            <PropertyRef Name="custid" />
+          </Key>
+          <Property Name="custid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="companyname" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="contactname" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="contacttitle" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="region" Type="nvarchar" MaxLength="15" />
+          <Property Name="postalcode" Type="nvarchar" MaxLength="10" />
+          <Property Name="country" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="24" Nullable="false" />
+          <Property Name="fax" Type="nvarchar" MaxLength="24" />
+        </EntityType>
+        <EntityType Name="MyOrderDetails">
+          <Key>
+            <PropertyRef Name="orderid" />
+            <PropertyRef Name="productid" />
+          </Key>
+          <Property Name="orderid" Type="int" Nullable="false" />
+          <Property Name="productid" Type="int" Nullable="false" />
+          <Property Name="unitprice" Type="money" Nullable="false" />
+          <Property Name="qty" Type="smallint" Nullable="false" />
+          <Property Name="discount" Type="numeric" Precision="4" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MyOrders1">
+          <Key>
+            <PropertyRef Name="orderid" />
+          </Key>
+          <Property Name="orderid" Type="int" Nullable="false" />
+          <Property Name="custid" Type="int" Nullable="false" />
+          <Property Name="empid" Type="int" Nullable="false" />
+          <Property Name="orderdate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="orderid" />
+            <PropertyRef Name="productid" />
+          </Key>
+          <Property Name="orderid" Type="int" Nullable="false" />
+          <Property Name="productid" Type="int" Nullable="false" />
+          <Property Name="unitprice" Type="money" Nullable="false" />
+          <Property Name="qty" Type="smallint" Nullable="false" />
+          <Property Name="discount" Type="numeric" Precision="4" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="orderid" />
+          </Key>
+          <Property Name="orderid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="custid" Type="int" />
+          <Property Name="empid" Type="int" Nullable="false" />
+          <Property Name="orderdate" Type="datetime" Nullable="false" />
+          <Property Name="requireddate" Type="datetime" Nullable="false" />
+          <Property Name="shippeddate" Type="datetime" />
+          <Property Name="shipperid" Type="int" Nullable="false" />
+          <Property Name="freight" Type="money" Nullable="false" />
+          <Property Name="shipname" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="shipaddress" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="shipcity" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="shipregion" Type="nvarchar" MaxLength="15" />
+          <Property Name="shippostalcode" Type="nvarchar" MaxLength="10" />
+          <Property Name="shipcountry" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shippers">
+          <Key>
+            <PropertyRef Name="shipperid" />
+          </Key>
+          <Property Name="shipperid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="companyname" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="24" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Scores">
+          <Key>
+            <PropertyRef Name="testid" />
+            <PropertyRef Name="studentid" />
+          </Key>
+          <Property Name="testid" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="studentid" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="score" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tests">
+          <Key>
+            <PropertyRef Name="testid" />
+          </Key>
+          <Property Name="testid" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TSQL2012.dbo.MyView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MyView">
+          <Key>
+            <PropertyRef Name="empid" />
+            <PropertyRef Name="lastname" />
+            <PropertyRef Name="firstname" />
+            <PropertyRef Name="title" />
+            <PropertyRef Name="titleofcourtesy" />
+            <PropertyRef Name="birthdate" />
+            <PropertyRef Name="hiredate" />
+            <PropertyRef Name="address" />
+            <PropertyRef Name="city" />
+            <PropertyRef Name="country" />
+            <PropertyRef Name="phone" />
+          </Key>
+          <Property Name="empid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lastname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="firstname" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="titleofcourtesy" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="birthdate" Type="datetime" Nullable="false" />
+          <Property Name="hiredate" Type="datetime" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="region" Type="nvarchar" MaxLength="15" />
+          <Property Name="postalcode" Type="nvarchar" MaxLength="10" />
+          <Property Name="country" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="24" Nullable="false" />
+          <Property Name="mgrid" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'TSQL2012.Sales.CustOrders' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="CustOrders">
+          <Property Name="custid" Type="int" />
+          <Property Name="ordermonth" Type="datetime" />
+          <Property Name="qty" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TSQL2012.Sales.EmpOrders' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EmpOrders">
+          <Key>
+            <PropertyRef Name="empid" />
+          </Key>
+          <Property Name="empid" Type="int" Nullable="false" />
+          <Property Name="ordermonth" Type="datetime" />
+          <Property Name="qty" Type="int" />
+          <Property Name="val" Type="numeric" Precision="12" Scale="2" />
+          <Property Name="numorders" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'TSQL2012.Sales.OrderTotalsByYear' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="OrderTotalsByYear">
+          <Property Name="orderyear" Type="int" />
+          <Property Name="qty" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TSQL2012.Sales.OrderTotalsByYearCustShip' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="OrderTotalsByYearCustShip">
+          <Key>
+            <PropertyRef Name="customercompany" />
+            <PropertyRef Name="shippercompany" />
+          </Key>
+          <Property Name="customercompany" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="shippercompany" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="orderyear" Type="int" />
+          <Property Name="qty" Type="int" />
+          <Property Name="val" Type="numeric" Precision="12" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TSQL2012.Sales.RankedProducts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RankedProducts">
+          <Key>
+            <PropertyRef Name="categoryid" />
+            <PropertyRef Name="productid" />
+            <PropertyRef Name="productname" />
+            <PropertyRef Name="unitprice" />
+          </Key>
+          <Property Name="rownum" Type="bigint" />
+          <Property Name="categoryid" Type="int" Nullable="false" />
+          <Property Name="productid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productname" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="unitprice" Type="money" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Employees_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Employees1" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="empid" />
+            </Principal>
+            <Dependent Role="Employees1">
+              <PropertyRef Name="mgrid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_Dim1">
+          <End Role="Dim1" Type="Self.Dim1" Multiplicity="1" />
+          <End Role="Fact" Type="Self.Fact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dim1">
+              <PropertyRef Name="key1" />
+            </Principal>
+            <Dependent Role="Fact">
+              <PropertyRef Name="key1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_Dim2">
+          <End Role="Dim2" Type="Self.Dim2" Multiplicity="1" />
+          <End Role="Fact" Type="Self.Fact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dim2">
+              <PropertyRef Name="key2" />
+            </Principal>
+            <Dependent Role="Fact">
+              <PropertyRef Name="key2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_Dim3">
+          <End Role="Dim3" Type="Self.Dim3" Multiplicity="1" />
+          <End Role="Fact" Type="Self.Fact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dim3">
+              <PropertyRef Name="key3" />
+            </Principal>
+            <Dependent Role="Fact">
+              <PropertyRef Name="key3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="orderid" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="orderid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="productid" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="custid" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="custid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="empid" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="empid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Shippers">
+          <End Role="Shippers" Type="Self.Shippers" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shippers">
+              <PropertyRef Name="shipperid" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="shipperid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="categoryid" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="categoryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Suppliers">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="supplierid" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="supplierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Scores_Tests">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
+          <End Role="Scores" Type="Self.Scores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="testid" />
+            </Principal>
+            <Dependent Role="Scores">
+              <PropertyRef Name="testid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetNums" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="low" Type="bigint" Mode="In" />
+          <Parameter Name="high" Type="bigint" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="n" Type="bigint" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="MyProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Categoryname" Type="nvarchar" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetManagers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="HR">
+          <Parameter Name="empid" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="empid" Type="int" />
+                <Property Name="mgrid" Type="int" />
+                <Property Name="firstname" Type="nvarchar" MaxLength="10" />
+                <Property Name="lastname" Type="nvarchar" MaxLength="20" />
+                <Property Name="distance" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetTopProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Production">
+          <Parameter Name="supplierid" Type="int" Mode="In" />
+          <Parameter Name="n" Type="bigint" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="productid" Type="int" Nullable="false" />
+                <Property Name="productname" Type="nvarchar" MaxLength="40" Nullable="false" />
+                <Property Name="unitprice" Type="money" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="InsertProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Production">
+          <Parameter Name="productname" Type="nvarchar" Mode="In" />
+          <Parameter Name="supplierid" Type="int" Mode="In" />
+          <Parameter Name="categoryid" Type="int" Mode="In" />
+          <Parameter Name="unitprice" Type="money" Mode="In" />
+          <Parameter Name="discontinued" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="fn_extension" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Sales" ReturnType="money">
+          <Parameter Name="unitprice" Type="money" Mode="In" />
+          <Parameter Name="qty" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fn_FilteredExtension2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Sales">
+          <Parameter Name="lowqty" Type="smallint" Mode="In" />
+          <Parameter Name="highqty" Type="smallint" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="orderid" Type="int" />
+                <Property Name="unitprice" Type="money" />
+                <Property Name="qty" Type="smallint" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_OrderTotalsByYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Sales">
+          <Parameter Name="orderyear" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="orderyear" Type="int" />
+                <Property Name="qty" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_OrderTotalsByYearCustShip" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Sales">
+          <Parameter Name="lowqty" Type="int" Mode="In" />
+          <Parameter Name="highqty" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="customercompany" Type="nvarchar" MaxLength="40" Nullable="false" />
+                <Property Name="shippercompany" Type="nvarchar" MaxLength="40" Nullable="false" />
+                <Property Name="orderyear" Type="int" />
+                <Property Name="qty" Type="int" />
+                <Property Name="val" Type="numeric" Precision="12" Scale="2" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetCustomerOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Sales">
+          <Parameter Name="custid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ListCustomersByAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Sales">
+          <Parameter Name="address" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ListSampleResultsSets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Sales" />
+        <Function Name="OrdersForCountry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Sales">
+          <Parameter Name="country" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ProcessCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Sales">
+          <Parameter Name="custid" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="TSQL2012ModelStoreContainer">
+          <EntitySet Name="Dim1" EntityType="Self.Dim1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dim2" EntityType="Self.Dim2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dim3" EntityType="Self.Dim3" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Documents" EntityType="Self.Documents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fact" EntityType="Self.Fact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nums" EntityType="Self.Nums" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T1" EntityType="Self.T1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkOut" EntityType="Self.WorkOut" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="HR" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="Production" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="Production" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="Production" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="Sales" store:Type="Tables" />
+          <EntitySet Name="MyCustomers" EntityType="Self.MyCustomers" Schema="Sales" store:Type="Tables" />
+          <EntitySet Name="MyOrderDetails" EntityType="Self.MyOrderDetails" Schema="Sales" store:Type="Tables" />
+          <EntitySet Name="MyOrders1" EntityType="Self.MyOrders1" Schema="Sales" Table="MyOrders" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="Sales" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="Sales" store:Type="Tables" />
+          <EntitySet Name="Shippers" EntityType="Self.Shippers" Schema="Sales" store:Type="Tables" />
+          <EntitySet Name="Scores" EntityType="Self.Scores" Schema="Stats" store:Type="Tables" />
+          <EntitySet Name="Tests" EntityType="Self.Tests" Schema="Stats" store:Type="Tables" />
+          <EntitySet Name="MyOrders" EntityType="Self.MyOrders" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MyOrders].[orderid] AS [orderid], 
+    [MyOrders].[custid] AS [custid], 
+    [MyOrders].[empid] AS [empid], 
+    [MyOrders].[orderdate] AS [orderdate], 
+    [MyOrders].[requireddate] AS [requireddate], 
+    [MyOrders].[shippeddate] AS [shippeddate], 
+    [MyOrders].[shipperid] AS [shipperid], 
+    [MyOrders].[freight] AS [freight], 
+    [MyOrders].[shipname] AS [shipname], 
+    [MyOrders].[shipaddress] AS [shipaddress], 
+    [MyOrders].[shipcity] AS [shipcity], 
+    [MyOrders].[shipregion] AS [shipregion], 
+    [MyOrders].[shippostalcode] AS [shippostalcode], 
+    [MyOrders].[shipcountry] AS [shipcountry]
+    FROM [dbo].[MyOrders] AS [MyOrders]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MyTestForDelete" EntityType="Self.MyTestForDelete" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MyTestForDelete].[n] AS [n], 
+    [MyTestForDelete].[orderid] AS [orderid], 
+    [MyTestForDelete].[custid] AS [custid], 
+    [MyTestForDelete].[empid] AS [empid], 
+    [MyTestForDelete].[orderdate] AS [orderdate], 
+    [MyTestForDelete].[requireddate] AS [requireddate], 
+    [MyTestForDelete].[shippeddate] AS [shippeddate], 
+    [MyTestForDelete].[shipperid] AS [shipperid], 
+    [MyTestForDelete].[freight] AS [freight], 
+    [MyTestForDelete].[shipname] AS [shipname], 
+    [MyTestForDelete].[shipaddress] AS [shipaddress], 
+    [MyTestForDelete].[shipcity] AS [shipcity], 
+    [MyTestForDelete].[shipregion] AS [shipregion], 
+    [MyTestForDelete].[shippostalcode] AS [shippostalcode], 
+    [MyTestForDelete].[shipcountry] AS [shipcountry]
+    FROM [dbo].[MyTestForDelete] AS [MyTestForDelete]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CategoriesTest" EntityType="Self.CategoriesTest" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [CategoriesTest].[categoryid] AS [categoryid], 
+    [CategoriesTest].[categoryname] AS [categoryname], 
+    [CategoriesTest].[description] AS [description], 
+    [CategoriesTest].[categorystatus] AS [categorystatus]
+    FROM [Production].[CategoriesTest] AS [CategoriesTest]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MyView" EntityType="Self.MyView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MyView].[empid] AS [empid], 
+    [MyView].[lastname] AS [lastname], 
+    [MyView].[firstname] AS [firstname], 
+    [MyView].[title] AS [title], 
+    [MyView].[titleofcourtesy] AS [titleofcourtesy], 
+    [MyView].[birthdate] AS [birthdate], 
+    [MyView].[hiredate] AS [hiredate], 
+    [MyView].[address] AS [address], 
+    [MyView].[city] AS [city], 
+    [MyView].[region] AS [region], 
+    [MyView].[postalcode] AS [postalcode], 
+    [MyView].[country] AS [country], 
+    [MyView].[phone] AS [phone], 
+    [MyView].[mgrid] AS [mgrid]
+    FROM [dbo].[MyView] AS [MyView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="EmpOrders" EntityType="Self.EmpOrders" store:Type="Views" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [EmpOrders].[empid] AS [empid], 
+    [EmpOrders].[ordermonth] AS [ordermonth], 
+    [EmpOrders].[qty] AS [qty], 
+    [EmpOrders].[val] AS [val], 
+    [EmpOrders].[numorders] AS [numorders]
+    FROM [Sales].[EmpOrders] AS [EmpOrders]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="OrderTotalsByYearCustShip" EntityType="Self.OrderTotalsByYearCustShip" store:Type="Views" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [OrderTotalsByYearCustShip].[customercompany] AS [customercompany], 
+    [OrderTotalsByYearCustShip].[shippercompany] AS [shippercompany], 
+    [OrderTotalsByYearCustShip].[orderyear] AS [orderyear], 
+    [OrderTotalsByYearCustShip].[qty] AS [qty], 
+    [OrderTotalsByYearCustShip].[val] AS [val]
+    FROM [Sales].[OrderTotalsByYearCustShip] AS [OrderTotalsByYearCustShip]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RankedProducts" EntityType="Self.RankedProducts" store:Type="Views" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [RankedProducts].[rownum] AS [rownum], 
+    [RankedProducts].[categoryid] AS [categoryid], 
+    [RankedProducts].[productid] AS [productid], 
+    [RankedProducts].[productname] AS [productname], 
+    [RankedProducts].[unitprice] AS [unitprice]
+    FROM [Sales].[RankedProducts] AS [RankedProducts]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Employees_Employees" Association="Self.FK_Employees_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Employees1" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_Dim1" Association="Self.FK_Fact_Dim1">
+            <End Role="Dim1" EntitySet="Dim1" />
+            <End Role="Fact" EntitySet="Fact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_Dim2" Association="Self.FK_Fact_Dim2">
+            <End Role="Dim2" EntitySet="Dim2" />
+            <End Role="Fact" EntitySet="Fact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_Dim3" Association="Self.FK_Fact_Dim3">
+            <End Role="Dim3" EntitySet="Dim3" />
+            <End Role="Fact" EntitySet="Fact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Orders" Association="Self.FK_OrderDetails_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Products" Association="Self.FK_OrderDetails_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Customers" Association="Self.FK_Orders_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Employees" Association="Self.FK_Orders_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Shippers" Association="Self.FK_Orders_Shippers">
+            <End Role="Shippers" EntitySet="Shippers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Suppliers" Association="Self.FK_Products_Suppliers">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Scores_Tests" Association="Self.FK_Scores_Tests">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Scores" EntitySet="Scores" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TSQL2012Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="GetNums_Result">
+          <Property Name="n" Type="Int64" />
+        </ComplexType>
+        <ComplexType Name="GetManagers_Result">
+          <Property Name="empid" Type="Int32" />
+          <Property Name="mgrid" Type="Int32" />
+          <Property Name="firstname" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="lastname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="distance" Type="Int32" />
+        </ComplexType>
+        <ComplexType Name="GetTopProducts_Result">
+          <Property Name="productid" Type="Int32" Nullable="false" />
+          <Property Name="productname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="unitprice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="fn_FilteredExtension2_Result">
+          <Property Name="orderid" Type="Int32" />
+          <Property Name="unitprice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="qty" Type="Int16" />
+        </ComplexType>
+        <ComplexType Name="fn_OrderTotalsByYear_Result">
+          <Property Name="orderyear" Type="Int32" />
+          <Property Name="qty" Type="Int32" />
+        </ComplexType>
+        <ComplexType Name="fn_OrderTotalsByYearCustShip_Result">
+          <Property Name="customercompany" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shippercompany" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="orderyear" Type="Int32" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="val" Type="Decimal" Precision="12" Scale="2" />
+        </ComplexType>
+        <EntityType Name="Dim1">
+          <Key>
+            <PropertyRef Name="key1" />
+          </Key>
+          <Property Name="key1" Type="Int32" Nullable="false" />
+          <Property Name="attr1" Type="Int32" Nullable="false" />
+          <Property Name="filler" Type="Binary" MaxLength="100" FixedLength="true" Nullable="false" />
+          <NavigationProperty Name="Facts" Relationship="Self.FK_Fact_Dim1" FromRole="Dim1" ToRole="Fact" />
+        </EntityType>
+        <EntityType Name="Dim2">
+          <Key>
+            <PropertyRef Name="key2" />
+          </Key>
+          <Property Name="key2" Type="Int32" Nullable="false" />
+          <Property Name="attr1" Type="Int32" Nullable="false" />
+          <Property Name="filler" Type="Binary" MaxLength="100" FixedLength="true" Nullable="false" />
+          <NavigationProperty Name="Facts" Relationship="Self.FK_Fact_Dim2" FromRole="Dim2" ToRole="Fact" />
+        </EntityType>
+        <EntityType Name="Dim3">
+          <Key>
+            <PropertyRef Name="key3" />
+          </Key>
+          <Property Name="key3" Type="Int32" Nullable="false" />
+          <Property Name="attr1" Type="Int32" Nullable="false" />
+          <Property Name="filler" Type="Binary" MaxLength="100" FixedLength="true" Nullable="false" />
+          <NavigationProperty Name="Facts" Relationship="Self.FK_Fact_Dim3" FromRole="Dim3" ToRole="Fact" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="doctype" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="docexcerpt" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="doccontent" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fact">
+          <Key>
+            <PropertyRef Name="key1" />
+            <PropertyRef Name="key2" />
+            <PropertyRef Name="key3" />
+          </Key>
+          <Property Name="key1" Type="Int32" Nullable="false" />
+          <Property Name="key2" Type="Int32" Nullable="false" />
+          <Property Name="key3" Type="Int32" Nullable="false" />
+          <Property Name="measure1" Type="Int32" Nullable="false" />
+          <Property Name="measure2" Type="Int32" Nullable="false" />
+          <Property Name="measure3" Type="Int32" Nullable="false" />
+          <Property Name="filler" Type="Binary" MaxLength="100" FixedLength="true" Nullable="false" />
+          <NavigationProperty Name="Dim1" Relationship="Self.FK_Fact_Dim1" FromRole="Fact" ToRole="Dim1" />
+          <NavigationProperty Name="Dim2" Relationship="Self.FK_Fact_Dim2" FromRole="Fact" ToRole="Dim2" />
+          <NavigationProperty Name="Dim3" Relationship="Self.FK_Fact_Dim3" FromRole="Fact" ToRole="Dim3" />
+        </EntityType>
+        <EntityType Name="Num">
+          <Key>
+            <PropertyRef Name="n" />
+          </Key>
+          <Property Name="n" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T1">
+          <Key>
+            <PropertyRef Name="keycol" />
+          </Key>
+          <Property Name="keycol" Type="Int32" Nullable="false" />
+          <Property Name="col1" Type="Int32" Nullable="false" />
+          <Property Name="col2" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="actid" />
+            <PropertyRef Name="tranid" />
+          </Key>
+          <Property Name="actid" Type="Int32" Nullable="false" />
+          <Property Name="tranid" Type="Int32" Nullable="false" />
+          <Property Name="val" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkOut">
+          <Key>
+            <PropertyRef Name="DateOut" />
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="DateOut" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="empid" />
+          </Key>
+          <Property Name="empid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lastname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="firstname" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="titleofcourtesy" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="birthdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="hiredate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="region" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="postalcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mgrid" Type="Int32" />
+          <NavigationProperty Name="Employees1" Relationship="Self.FK_Employees_Employees" FromRole="Employees" ToRole="Employees1" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK_Employees_Employees" FromRole="Employees1" ToRole="Employees" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Employees" FromRole="Employees" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryid" />
+          </Key>
+          <Property Name="categoryid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryname" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Categories" FromRole="Categories" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="productid" />
+          </Key>
+          <Property Name="productid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="supplierid" Type="Int32" Nullable="false" />
+          <Property Name="categoryid" Type="Int32" Nullable="false" />
+          <Property Name="unitprice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="discontinued" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Products" FromRole="Products" ToRole="OrderDetails" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_Products_Suppliers" FromRole="Products" ToRole="Suppliers" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="supplierid" />
+          </Key>
+          <Property Name="supplierid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="companyname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contactname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contacttitle" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="region" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="postalcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fax" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Suppliers" FromRole="Suppliers" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="custid" />
+          </Key>
+          <Property Name="custid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="companyname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contactname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contacttitle" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="region" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="postalcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fax" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Customers" FromRole="Customers" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="MyCustomer">
+          <Key>
+            <PropertyRef Name="custid" />
+          </Key>
+          <Property Name="custid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="companyname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contactname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contacttitle" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="region" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="postalcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fax" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MyOrderDetail">
+          <Key>
+            <PropertyRef Name="orderid" />
+            <PropertyRef Name="productid" />
+          </Key>
+          <Property Name="orderid" Type="Int32" Nullable="false" />
+          <Property Name="productid" Type="Int32" Nullable="false" />
+          <Property Name="unitprice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="qty" Type="Int16" Nullable="false" />
+          <Property Name="discount" Type="Decimal" Precision="4" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MyOrders1">
+          <Key>
+            <PropertyRef Name="orderid" />
+          </Key>
+          <Property Name="orderid" Type="Int32" Nullable="false" />
+          <Property Name="custid" Type="Int32" Nullable="false" />
+          <Property Name="empid" Type="Int32" Nullable="false" />
+          <Property Name="orderdate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="orderid" />
+            <PropertyRef Name="productid" />
+          </Key>
+          <Property Name="orderid" Type="Int32" Nullable="false" />
+          <Property Name="productid" Type="Int32" Nullable="false" />
+          <Property Name="unitprice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="qty" Type="Int16" Nullable="false" />
+          <Property Name="discount" Type="Decimal" Precision="4" Scale="3" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_OrderDetails_Products" FromRole="OrderDetails" ToRole="Products" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetails_Orders" FromRole="OrderDetails" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="orderid" />
+          </Key>
+          <Property Name="orderid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="custid" Type="Int32" />
+          <Property Name="empid" Type="Int32" Nullable="false" />
+          <Property Name="orderdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="requireddate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="shippeddate" Type="DateTime" Precision="3" />
+          <Property Name="shipperid" Type="Int32" Nullable="false" />
+          <Property Name="freight" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="shipname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shipaddress" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shipcity" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shipregion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="shippostalcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="shipcountry" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Orders_Employees" FromRole="Orders" ToRole="Employees" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Orders_Customers" FromRole="Orders" ToRole="Customers" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Orders" FromRole="Orders" ToRole="OrderDetails" />
+          <NavigationProperty Name="Shipper" Relationship="Self.FK_Orders_Shippers" FromRole="Orders" ToRole="Shippers" />
+        </EntityType>
+        <EntityType Name="Shipper">
+          <Key>
+            <PropertyRef Name="shipperid" />
+          </Key>
+          <Property Name="shipperid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="companyname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Shippers" FromRole="Shippers" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Score">
+          <Key>
+            <PropertyRef Name="testid" />
+            <PropertyRef Name="studentid" />
+          </Key>
+          <Property Name="testid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="studentid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="score1" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Test" Relationship="Self.FK_Scores_Tests" FromRole="Scores" ToRole="Tests" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="testid" />
+          </Key>
+          <Property Name="testid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Scores" Relationship="Self.FK_Scores_Tests" FromRole="Tests" ToRole="Scores" />
+        </EntityType>
+        <EntityType Name="MyOrder">
+          <Key>
+            <PropertyRef Name="orderid" />
+            <PropertyRef Name="empid" />
+            <PropertyRef Name="orderdate" />
+            <PropertyRef Name="requireddate" />
+            <PropertyRef Name="shipperid" />
+            <PropertyRef Name="freight" />
+            <PropertyRef Name="shipname" />
+            <PropertyRef Name="shipaddress" />
+            <PropertyRef Name="shipcity" />
+            <PropertyRef Name="shipcountry" />
+          </Key>
+          <Property Name="orderid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="custid" Type="Int32" />
+          <Property Name="empid" Type="Int32" Nullable="false" />
+          <Property Name="orderdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="requireddate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="shippeddate" Type="DateTime" Precision="3" />
+          <Property Name="shipperid" Type="Int32" Nullable="false" />
+          <Property Name="freight" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="shipname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shipaddress" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shipcity" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shipregion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="shippostalcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="shipcountry" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MyTestForDelete">
+          <Key>
+            <PropertyRef Name="n" />
+            <PropertyRef Name="orderid" />
+            <PropertyRef Name="empid" />
+            <PropertyRef Name="orderdate" />
+            <PropertyRef Name="requireddate" />
+            <PropertyRef Name="shipperid" />
+            <PropertyRef Name="freight" />
+            <PropertyRef Name="shipname" />
+            <PropertyRef Name="shipaddress" />
+            <PropertyRef Name="shipcity" />
+            <PropertyRef Name="shipcountry" />
+          </Key>
+          <Property Name="n" Type="Int32" Nullable="false" />
+          <Property Name="orderid" Type="Int32" Nullable="false" />
+          <Property Name="custid" Type="Int32" />
+          <Property Name="empid" Type="Int32" Nullable="false" />
+          <Property Name="orderdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="requireddate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="shippeddate" Type="DateTime" Precision="3" />
+          <Property Name="shipperid" Type="Int32" Nullable="false" />
+          <Property Name="freight" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="shipname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shipaddress" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shipcity" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shipregion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="shippostalcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="shipcountry" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategoriesTest">
+          <Key>
+            <PropertyRef Name="categoryid" />
+            <PropertyRef Name="categoryname" />
+            <PropertyRef Name="description" />
+            <PropertyRef Name="categorystatus" />
+          </Key>
+          <Property Name="categoryid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryname" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="categorystatus" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MyView">
+          <Key>
+            <PropertyRef Name="empid" />
+            <PropertyRef Name="lastname" />
+            <PropertyRef Name="firstname" />
+            <PropertyRef Name="title" />
+            <PropertyRef Name="titleofcourtesy" />
+            <PropertyRef Name="birthdate" />
+            <PropertyRef Name="hiredate" />
+            <PropertyRef Name="address" />
+            <PropertyRef Name="city" />
+            <PropertyRef Name="country" />
+            <PropertyRef Name="phone" />
+          </Key>
+          <Property Name="empid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lastname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="firstname" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="titleofcourtesy" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="birthdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="hiredate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="region" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="postalcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mgrid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="EmpOrder">
+          <Key>
+            <PropertyRef Name="empid" />
+          </Key>
+          <Property Name="empid" Type="Int32" Nullable="false" />
+          <Property Name="ordermonth" Type="DateTime" Precision="3" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="val" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="numorders" Type="Int32" />
+        </EntityType>
+        <EntityType Name="OrderTotalsByYearCustShip">
+          <Key>
+            <PropertyRef Name="customercompany" />
+            <PropertyRef Name="shippercompany" />
+          </Key>
+          <Property Name="customercompany" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shippercompany" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="orderyear" Type="Int32" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="val" Type="Decimal" Precision="12" Scale="2" />
+        </EntityType>
+        <EntityType Name="RankedProduct">
+          <Key>
+            <PropertyRef Name="categoryid" />
+            <PropertyRef Name="productid" />
+            <PropertyRef Name="productname" />
+            <PropertyRef Name="unitprice" />
+          </Key>
+          <Property Name="rownum" Type="Int64" />
+          <Property Name="categoryid" Type="Int32" Nullable="false" />
+          <Property Name="productid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="unitprice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Fact_Dim1">
+          <End Role="Dim1" Type="Self.Dim1" Multiplicity="1" />
+          <End Role="Fact" Type="Self.Fact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dim1">
+              <PropertyRef Name="key1" />
+            </Principal>
+            <Dependent Role="Fact">
+              <PropertyRef Name="key1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_Dim2">
+          <End Role="Dim2" Type="Self.Dim2" Multiplicity="1" />
+          <End Role="Fact" Type="Self.Fact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dim2">
+              <PropertyRef Name="key2" />
+            </Principal>
+            <Dependent Role="Fact">
+              <PropertyRef Name="key2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_Dim3">
+          <End Role="Dim3" Type="Self.Dim3" Multiplicity="1" />
+          <End Role="Fact" Type="Self.Fact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dim3">
+              <PropertyRef Name="key3" />
+            </Principal>
+            <Dependent Role="Fact">
+              <PropertyRef Name="key3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Employees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employees1" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="empid" />
+            </Principal>
+            <Dependent Role="Employees1">
+              <PropertyRef Name="mgrid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Employees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="empid" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="empid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Categories">
+          <End Role="Categories" Type="Self.Category" Multiplicity="1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="categoryid" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="categoryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Products">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="productid" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Suppliers">
+          <End Role="Suppliers" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="supplierid" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="supplierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Customers">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="custid" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="custid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Orders">
+          <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="orderid" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="orderid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Shippers">
+          <End Role="Shippers" Type="Self.Shipper" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shippers">
+              <PropertyRef Name="shipperid" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="shipperid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Scores_Tests">
+          <End Role="Tests" Type="Self.Test" Multiplicity="1" />
+          <End Role="Scores" Type="Self.Score" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="testid" />
+            </Principal>
+            <Dependent Role="Scores">
+              <PropertyRef Name="testid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TSQL2012Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Dim1" EntityType="Self.Dim1" />
+          <EntitySet Name="Dim2" EntityType="Self.Dim2" />
+          <EntitySet Name="Dim3" EntityType="Self.Dim3" />
+          <EntitySet Name="Documents" EntityType="Self.Document" />
+          <EntitySet Name="Facts" EntityType="Self.Fact" />
+          <EntitySet Name="Nums" EntityType="Self.Num" />
+          <EntitySet Name="T1" EntityType="Self.T1" />
+          <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+          <EntitySet Name="WorkOuts" EntityType="Self.WorkOut" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="MyCustomers" EntityType="Self.MyCustomer" />
+          <EntitySet Name="MyOrderDetails" EntityType="Self.MyOrderDetail" />
+          <EntitySet Name="MyOrders1" EntityType="Self.MyOrders1" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Shippers" EntityType="Self.Shipper" />
+          <EntitySet Name="Scores" EntityType="Self.Score" />
+          <EntitySet Name="Tests" EntityType="Self.Test" />
+          <EntitySet Name="MyOrders" EntityType="Self.MyOrder" />
+          <EntitySet Name="MyTestForDeletes" EntityType="Self.MyTestForDelete" />
+          <EntitySet Name="CategoriesTests" EntityType="Self.CategoriesTest" />
+          <EntitySet Name="MyViews" EntityType="Self.MyView" />
+          <EntitySet Name="EmpOrders" EntityType="Self.EmpOrder" />
+          <EntitySet Name="OrderTotalsByYearCustShips" EntityType="Self.OrderTotalsByYearCustShip" />
+          <EntitySet Name="RankedProducts" EntityType="Self.RankedProduct" />
+          <AssociationSet Name="FK_Fact_Dim1" Association="Self.FK_Fact_Dim1">
+            <End Role="Dim1" EntitySet="Dim1" />
+            <End Role="Fact" EntitySet="Facts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_Dim2" Association="Self.FK_Fact_Dim2">
+            <End Role="Dim2" EntitySet="Dim2" />
+            <End Role="Fact" EntitySet="Facts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_Dim3" Association="Self.FK_Fact_Dim3">
+            <End Role="Dim3" EntitySet="Dim3" />
+            <End Role="Fact" EntitySet="Facts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Employees" Association="Self.FK_Employees_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Employees1" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Employees" Association="Self.FK_Orders_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Products" Association="Self.FK_OrderDetails_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Suppliers" Association="Self.FK_Products_Suppliers">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Customers" Association="Self.FK_Orders_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Orders" Association="Self.FK_OrderDetails_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Shippers" Association="Self.FK_Orders_Shippers">
+            <End Role="Shippers" EntitySet="Shippers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Scores_Tests" Association="Self.FK_Scores_Tests">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Scores" EntitySet="Scores" />
+          </AssociationSet>
+          <FunctionImport Name="GetNums" IsComposable="true" ReturnType="Collection(TSQL2012Model.GetNums_Result)">
+            <Parameter Name="low" Mode="In" Type="Int64" />
+            <Parameter Name="high" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="GetManagers" IsComposable="true" ReturnType="Collection(TSQL2012Model.GetManagers_Result)">
+            <Parameter Name="empid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetTopProducts" IsComposable="true" ReturnType="Collection(TSQL2012Model.GetTopProducts_Result)">
+            <Parameter Name="supplierid" Mode="In" Type="Int32" />
+            <Parameter Name="n" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="fn_FilteredExtension2" IsComposable="true" ReturnType="Collection(TSQL2012Model.fn_FilteredExtension2_Result)">
+            <Parameter Name="lowqty" Mode="In" Type="Int16" />
+            <Parameter Name="highqty" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="fn_OrderTotalsByYear" IsComposable="true" ReturnType="Collection(TSQL2012Model.fn_OrderTotalsByYear_Result)">
+            <Parameter Name="orderyear" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fn_OrderTotalsByYearCustShip" IsComposable="true" ReturnType="Collection(TSQL2012Model.fn_OrderTotalsByYearCustShip_Result)">
+            <Parameter Name="lowqty" Mode="In" Type="Int32" />
+            <Parameter Name="highqty" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="MyProcedure">
+            <Parameter Name="Categoryname" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertProducts">
+            <Parameter Name="productname" Mode="In" Type="String" />
+            <Parameter Name="supplierid" Mode="In" Type="Int32" />
+            <Parameter Name="categoryid" Mode="In" Type="Int32" />
+            <Parameter Name="unitprice" Mode="In" Type="Decimal" />
+            <Parameter Name="discontinued" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GetCustomerOrders" ReturnType="Collection(TSQL2012Model.GetCustomerOrders_Result)">
+            <Parameter Name="custid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ListCustomersByAddress" ReturnType="Collection(TSQL2012Model.ListCustomersByAddress_Result)">
+            <Parameter Name="address" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ListSampleResultsSets" ReturnType="Collection(TSQL2012Model.ListSampleResultsSets_Result)" />
+          <FunctionImport Name="OrdersForCountry" ReturnType="Collection(TSQL2012Model.OrdersForCountry_Result)">
+            <Parameter Name="country" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ProcessCustomer">
+            <Parameter Name="custid" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetCustomerOrders_Result">
+          <Property Type="Int32" Name="orderid" Nullable="false" />
+          <Property Type="Int32" Name="custid" Nullable="true" />
+          <Property Type="Int32" Name="empid" Nullable="false" />
+          <Property Type="DateTime" Name="orderdate" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="ListCustomersByAddress_Result">
+          <Property Type="String" Name="companyname" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="contactname" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="ListSampleResultsSets_Result">
+          <Property Type="Int32" Name="productid" Nullable="false" />
+          <Property Type="String" Name="productname" Nullable="false" MaxLength="40" />
+          <Property Type="Int32" Name="supplierid" Nullable="false" />
+          <Property Type="Int32" Name="categoryid" Nullable="false" />
+          <Property Type="Decimal" Name="unitprice" Nullable="false" Precision="19" />
+          <Property Type="Boolean" Name="discontinued" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="OrdersForCountry_Result">
+          <Property Type="Int32" Name="orderid" Nullable="false" />
+          <Property Type="Int32" Name="custid" Nullable="true" />
+          <Property Type="Int32" Name="empid" Nullable="false" />
+          <Property Type="DateTime" Name="orderdate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="shipcountry" Nullable="false" MaxLength="15" />
+          <Property Type="Decimal" Name="freight" Nullable="false" Precision="19" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TSQL2012ModelStoreContainer" CdmEntityContainer="TSQL2012Entities">
+          <EntitySetMapping Name="Dim1">
+            <EntityTypeMapping TypeName="TSQL2012Model.Dim1">
+              <MappingFragment StoreEntitySet="Dim1">
+                <ScalarProperty Name="key1" ColumnName="key1" />
+                <ScalarProperty Name="attr1" ColumnName="attr1" />
+                <ScalarProperty Name="filler" ColumnName="filler" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dim2">
+            <EntityTypeMapping TypeName="TSQL2012Model.Dim2">
+              <MappingFragment StoreEntitySet="Dim2">
+                <ScalarProperty Name="key2" ColumnName="key2" />
+                <ScalarProperty Name="attr1" ColumnName="attr1" />
+                <ScalarProperty Name="filler" ColumnName="filler" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dim3">
+            <EntityTypeMapping TypeName="TSQL2012Model.Dim3">
+              <MappingFragment StoreEntitySet="Dim3">
+                <ScalarProperty Name="key3" ColumnName="key3" />
+                <ScalarProperty Name="attr1" ColumnName="attr1" />
+                <ScalarProperty Name="filler" ColumnName="filler" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="TSQL2012Model.Document">
+              <MappingFragment StoreEntitySet="Documents">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="doctype" ColumnName="doctype" />
+                <ScalarProperty Name="docexcerpt" ColumnName="docexcerpt" />
+                <ScalarProperty Name="doccontent" ColumnName="doccontent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Facts">
+            <EntityTypeMapping TypeName="TSQL2012Model.Fact">
+              <MappingFragment StoreEntitySet="Fact">
+                <ScalarProperty Name="key1" ColumnName="key1" />
+                <ScalarProperty Name="key2" ColumnName="key2" />
+                <ScalarProperty Name="key3" ColumnName="key3" />
+                <ScalarProperty Name="measure1" ColumnName="measure1" />
+                <ScalarProperty Name="measure2" ColumnName="measure2" />
+                <ScalarProperty Name="measure3" ColumnName="measure3" />
+                <ScalarProperty Name="filler" ColumnName="filler" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nums">
+            <EntityTypeMapping TypeName="TSQL2012Model.Num">
+              <MappingFragment StoreEntitySet="Nums">
+                <ScalarProperty Name="n" ColumnName="n" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T1">
+            <EntityTypeMapping TypeName="TSQL2012Model.T1">
+              <MappingFragment StoreEntitySet="T1">
+                <ScalarProperty Name="keycol" ColumnName="keycol" />
+                <ScalarProperty Name="col1" ColumnName="col1" />
+                <ScalarProperty Name="col2" ColumnName="col2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="TSQL2012Model.Transaction">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="actid" ColumnName="actid" />
+                <ScalarProperty Name="tranid" ColumnName="tranid" />
+                <ScalarProperty Name="val" ColumnName="val" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkOuts">
+            <EntityTypeMapping TypeName="TSQL2012Model.WorkOut">
+              <MappingFragment StoreEntitySet="WorkOut">
+                <ScalarProperty Name="DateOut" ColumnName="DateOut" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="TSQL2012Model.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="empid" ColumnName="empid" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="titleofcourtesy" ColumnName="titleofcourtesy" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="hiredate" ColumnName="hiredate" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="postalcode" ColumnName="postalcode" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="mgrid" ColumnName="mgrid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="TSQL2012Model.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+                <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="TSQL2012Model.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="supplierid" ColumnName="supplierid" />
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+                <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+                <ScalarProperty Name="discontinued" ColumnName="discontinued" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="TSQL2012Model.Supplier">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="supplierid" ColumnName="supplierid" />
+                <ScalarProperty Name="companyname" ColumnName="companyname" />
+                <ScalarProperty Name="contactname" ColumnName="contactname" />
+                <ScalarProperty Name="contacttitle" ColumnName="contacttitle" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="postalcode" ColumnName="postalcode" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="TSQL2012Model.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="custid" ColumnName="custid" />
+                <ScalarProperty Name="companyname" ColumnName="companyname" />
+                <ScalarProperty Name="contactname" ColumnName="contactname" />
+                <ScalarProperty Name="contacttitle" ColumnName="contacttitle" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="postalcode" ColumnName="postalcode" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyCustomers">
+            <EntityTypeMapping TypeName="TSQL2012Model.MyCustomer">
+              <MappingFragment StoreEntitySet="MyCustomers">
+                <ScalarProperty Name="custid" ColumnName="custid" />
+                <ScalarProperty Name="companyname" ColumnName="companyname" />
+                <ScalarProperty Name="contactname" ColumnName="contactname" />
+                <ScalarProperty Name="contacttitle" ColumnName="contacttitle" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="postalcode" ColumnName="postalcode" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyOrderDetails">
+            <EntityTypeMapping TypeName="TSQL2012Model.MyOrderDetail">
+              <MappingFragment StoreEntitySet="MyOrderDetails">
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyOrders1">
+            <EntityTypeMapping TypeName="TSQL2012Model.MyOrders1">
+              <MappingFragment StoreEntitySet="MyOrders1">
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="custid" ColumnName="custid" />
+                <ScalarProperty Name="empid" ColumnName="empid" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="TSQL2012Model.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="TSQL2012Model.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="custid" ColumnName="custid" />
+                <ScalarProperty Name="empid" ColumnName="empid" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="requireddate" ColumnName="requireddate" />
+                <ScalarProperty Name="shippeddate" ColumnName="shippeddate" />
+                <ScalarProperty Name="shipperid" ColumnName="shipperid" />
+                <ScalarProperty Name="freight" ColumnName="freight" />
+                <ScalarProperty Name="shipname" ColumnName="shipname" />
+                <ScalarProperty Name="shipaddress" ColumnName="shipaddress" />
+                <ScalarProperty Name="shipcity" ColumnName="shipcity" />
+                <ScalarProperty Name="shipregion" ColumnName="shipregion" />
+                <ScalarProperty Name="shippostalcode" ColumnName="shippostalcode" />
+                <ScalarProperty Name="shipcountry" ColumnName="shipcountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shippers">
+            <EntityTypeMapping TypeName="TSQL2012Model.Shipper">
+              <MappingFragment StoreEntitySet="Shippers">
+                <ScalarProperty Name="shipperid" ColumnName="shipperid" />
+                <ScalarProperty Name="companyname" ColumnName="companyname" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Scores">
+            <EntityTypeMapping TypeName="TSQL2012Model.Score">
+              <MappingFragment StoreEntitySet="Scores">
+                <ScalarProperty Name="testid" ColumnName="testid" />
+                <ScalarProperty Name="studentid" ColumnName="studentid" />
+                <ScalarProperty Name="score1" ColumnName="score" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tests">
+            <EntityTypeMapping TypeName="TSQL2012Model.Test">
+              <MappingFragment StoreEntitySet="Tests">
+                <ScalarProperty Name="testid" ColumnName="testid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyOrders">
+            <EntityTypeMapping TypeName="TSQL2012Model.MyOrder">
+              <MappingFragment StoreEntitySet="MyOrders">
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="custid" ColumnName="custid" />
+                <ScalarProperty Name="empid" ColumnName="empid" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="requireddate" ColumnName="requireddate" />
+                <ScalarProperty Name="shippeddate" ColumnName="shippeddate" />
+                <ScalarProperty Name="shipperid" ColumnName="shipperid" />
+                <ScalarProperty Name="freight" ColumnName="freight" />
+                <ScalarProperty Name="shipname" ColumnName="shipname" />
+                <ScalarProperty Name="shipaddress" ColumnName="shipaddress" />
+                <ScalarProperty Name="shipcity" ColumnName="shipcity" />
+                <ScalarProperty Name="shipregion" ColumnName="shipregion" />
+                <ScalarProperty Name="shippostalcode" ColumnName="shippostalcode" />
+                <ScalarProperty Name="shipcountry" ColumnName="shipcountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyTestForDeletes">
+            <EntityTypeMapping TypeName="TSQL2012Model.MyTestForDelete">
+              <MappingFragment StoreEntitySet="MyTestForDelete">
+                <ScalarProperty Name="n" ColumnName="n" />
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="custid" ColumnName="custid" />
+                <ScalarProperty Name="empid" ColumnName="empid" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="requireddate" ColumnName="requireddate" />
+                <ScalarProperty Name="shippeddate" ColumnName="shippeddate" />
+                <ScalarProperty Name="shipperid" ColumnName="shipperid" />
+                <ScalarProperty Name="freight" ColumnName="freight" />
+                <ScalarProperty Name="shipname" ColumnName="shipname" />
+                <ScalarProperty Name="shipaddress" ColumnName="shipaddress" />
+                <ScalarProperty Name="shipcity" ColumnName="shipcity" />
+                <ScalarProperty Name="shipregion" ColumnName="shipregion" />
+                <ScalarProperty Name="shippostalcode" ColumnName="shippostalcode" />
+                <ScalarProperty Name="shipcountry" ColumnName="shipcountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoriesTests">
+            <EntityTypeMapping TypeName="TSQL2012Model.CategoriesTest">
+              <MappingFragment StoreEntitySet="CategoriesTest">
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+                <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="categorystatus" ColumnName="categorystatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyViews">
+            <EntityTypeMapping TypeName="TSQL2012Model.MyView">
+              <MappingFragment StoreEntitySet="MyView">
+                <ScalarProperty Name="empid" ColumnName="empid" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="titleofcourtesy" ColumnName="titleofcourtesy" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="hiredate" ColumnName="hiredate" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="postalcode" ColumnName="postalcode" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="mgrid" ColumnName="mgrid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmpOrders">
+            <EntityTypeMapping TypeName="TSQL2012Model.EmpOrder">
+              <MappingFragment StoreEntitySet="EmpOrders">
+                <ScalarProperty Name="empid" ColumnName="empid" />
+                <ScalarProperty Name="ordermonth" ColumnName="ordermonth" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="val" ColumnName="val" />
+                <ScalarProperty Name="numorders" ColumnName="numorders" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderTotalsByYearCustShips">
+            <EntityTypeMapping TypeName="TSQL2012Model.OrderTotalsByYearCustShip">
+              <MappingFragment StoreEntitySet="OrderTotalsByYearCustShip">
+                <ScalarProperty Name="customercompany" ColumnName="customercompany" />
+                <ScalarProperty Name="shippercompany" ColumnName="shippercompany" />
+                <ScalarProperty Name="orderyear" ColumnName="orderyear" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="val" ColumnName="val" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RankedProducts">
+            <EntityTypeMapping TypeName="TSQL2012Model.RankedProduct">
+              <MappingFragment StoreEntitySet="RankedProducts">
+                <ScalarProperty Name="rownum" ColumnName="rownum" />
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionName="TSQL2012Model.Store.GetNums" FunctionImportName="GetNums">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TSQL2012Model.GetNums_Result">
+                <ScalarProperty Name="n" ColumnName="n" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="TSQL2012Model.Store.GetManagers" FunctionImportName="GetManagers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TSQL2012Model.GetManagers_Result">
+                <ScalarProperty Name="empid" ColumnName="empid" />
+                <ScalarProperty Name="mgrid" ColumnName="mgrid" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="distance" ColumnName="distance" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="TSQL2012Model.Store.GetTopProducts" FunctionImportName="GetTopProducts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TSQL2012Model.GetTopProducts_Result">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="TSQL2012Model.Store.fn_FilteredExtension2" FunctionImportName="fn_FilteredExtension2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TSQL2012Model.fn_FilteredExtension2_Result">
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="TSQL2012Model.Store.fn_OrderTotalsByYear" FunctionImportName="fn_OrderTotalsByYear">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TSQL2012Model.fn_OrderTotalsByYear_Result">
+                <ScalarProperty Name="orderyear" ColumnName="orderyear" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="TSQL2012Model.Store.fn_OrderTotalsByYearCustShip" FunctionImportName="fn_OrderTotalsByYearCustShip">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TSQL2012Model.fn_OrderTotalsByYearCustShip_Result">
+                <ScalarProperty Name="customercompany" ColumnName="customercompany" />
+                <ScalarProperty Name="shippercompany" ColumnName="shippercompany" />
+                <ScalarProperty Name="orderyear" ColumnName="orderyear" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="val" ColumnName="val" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MyProcedure" FunctionName="TSQL2012Model.Store.MyProcedure" />
+          <FunctionImportMapping FunctionImportName="InsertProducts" FunctionName="TSQL2012Model.Store.InsertProducts" />
+          <FunctionImportMapping FunctionImportName="GetCustomerOrders" FunctionName="TSQL2012Model.Store.GetCustomerOrders">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TSQL2012Model.GetCustomerOrders_Result">
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="custid" ColumnName="custid" />
+                <ScalarProperty Name="empid" ColumnName="empid" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ListCustomersByAddress" FunctionName="TSQL2012Model.Store.ListCustomersByAddress">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TSQL2012Model.ListCustomersByAddress_Result">
+                <ScalarProperty Name="companyname" ColumnName="companyname" />
+                <ScalarProperty Name="contactname" ColumnName="contactname" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ListSampleResultsSets" FunctionName="TSQL2012Model.Store.ListSampleResultsSets">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TSQL2012Model.ListSampleResultsSets_Result">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="supplierid" ColumnName="supplierid" />
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+                <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+                <ScalarProperty Name="discontinued" ColumnName="discontinued" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OrdersForCountry" FunctionName="TSQL2012Model.Store.OrdersForCountry">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TSQL2012Model.OrdersForCountry_Result">
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="custid" ColumnName="custid" />
+                <ScalarProperty Name="empid" ColumnName="empid" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="shipcountry" ColumnName="shipcountry" />
+                <ScalarProperty Name="freight" ColumnName="freight" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ProcessCustomer" FunctionName="TSQL2012Model.Store.ProcessCustomer" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
