@@ -18,7 +18,7 @@ namespace EF_QueryTests.Controllers
         // GET: Orders
         public async Task<ActionResult> Index()
         {
-            GetOrdersInfo();
+            GetOrdersInfo1();
             var orders = db.Orders.Include(o => o.Employee).Include(o => o.Customer).Include(o => o.Shipper);
             return View(await orders.ToListAsync());
         }
@@ -36,6 +36,24 @@ namespace EF_QueryTests.Controllers
             }).OrderBy(p => p.CustId).ThenBy(p => p.Year);
             foreach (var p in orders)
                 number = p.Year;
+        }
+
+        //SELECT custid, MAX(orderid) AS maxorderid
+        //FROM Sales.Orders
+        //GROUP BY custid;
+        //var groups = db.Phones.GroupBy(p=>p.Company.Name)
+        //                  .Select(g => new { Name = g.Key, Count = g.Count()});
+        private void GetOrdersInfo1()
+        {
+            var number = 0;
+            var orders = db.Orders.GroupBy(p=>p.custid).
+                Select(g => new
+            {
+                CustId = g.Key,
+                Maxorderid = g.Select(x => x.orderid).Max()
+            });
+            foreach (var p in orders)
+                number = p.Maxorderid;
         }
 
         // GET: Orders/Details/5
