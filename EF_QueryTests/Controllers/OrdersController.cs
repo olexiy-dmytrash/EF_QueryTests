@@ -18,7 +18,7 @@ namespace EF_QueryTests.Controllers
         // GET: Orders
         public async Task<ActionResult> Index()
         {
-            GetOrdersInfo1();
+            GetOrdersInfo2();
             var orders = db.Orders.Include(o => o.Employee).Include(o => o.Customer).Include(o => o.Shipper);
             return View(await orders.ToListAsync());
         }
@@ -54,6 +54,23 @@ namespace EF_QueryTests.Controllers
             });
             foreach (var p in orders)
                 number = p.Maxorderid;
+        }
+
+        //SELECT shipperid, SUM(freight) AS totalfreight
+        //FROM Sales.Orders
+        //GROUP BY shipperid
+        //HAVING SUM(freight) > 20000.00;
+        private void GetOrdersInfo2()
+        {
+            decimal number = 0;
+            var orders = db.Orders.GroupBy(p => p.shipperid).
+                Select(g => new
+                {
+                    Shipperid = g.Key,
+                    Totalfreight = g.Select(x => x.freight).Sum()
+                }).Where(x=>x.Totalfreight > 20000);
+            foreach (var p in orders)
+                number = p.Totalfreight;
         }
 
         // GET: Orders/Details/5
