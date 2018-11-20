@@ -1,0 +1,58 @@
+﻿@model EF_QueryTests.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.productname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.unitprice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unitprice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.discontinued)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.discontinued)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.categoryname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.categoryname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier.companyname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier.companyname)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.productid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
