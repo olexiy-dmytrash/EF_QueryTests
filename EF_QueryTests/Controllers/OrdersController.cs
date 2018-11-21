@@ -18,7 +18,7 @@ namespace EF_QueryTests.Controllers
         // GET: Orders
         public async Task<ActionResult> Index()
         {
-            GetOrdersInfo3();
+            GetOrdersInfo4();
             var orders = db.Orders.Include(o => o.Employee).Include(o => o.Customer).Include(o => o.Shipper);
             return View(await orders.ToListAsync());
         }
@@ -87,6 +87,23 @@ namespace EF_QueryTests.Controllers
                 Empid = o.empid,
                 Shippeddate = o.shippeddate
             }).Where(x => x.Shippeddate == null );
+            foreach (var p in orders)
+                number = p.Orderid;
+        }
+
+        //SELECT orderid, orderdate, custid, empid
+        //FROM Sales.Orders
+        //WHERE orderdate >= '20080211' AND orderdate < '20080213';
+        private void GetOrdersInfo4()
+        {
+            int number = 0;
+            var orders = db.Orders.Select(o => new
+            {
+                Orderid = o.orderid,
+                Orderdate = o.orderdate,
+                Custid = o.custid,
+                Empid = o.empid
+            }).Where(x => x.Orderdate >= new DateTime(2008, 2, 11) && x.Orderdate < new DateTime(2008, 2, 13));
             foreach (var p in orders)
                 number = p.Orderid;
         }
