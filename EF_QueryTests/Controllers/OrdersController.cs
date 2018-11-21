@@ -18,7 +18,7 @@ namespace EF_QueryTests.Controllers
         // GET: Orders
         public async Task<ActionResult> Index()
         {
-            GetOrdersInfo2();
+            GetOrdersInfo3();
             var orders = db.Orders.Include(o => o.Employee).Include(o => o.Customer).Include(o => o.Shipper);
             return View(await orders.ToListAsync());
         }
@@ -71,6 +71,24 @@ namespace EF_QueryTests.Controllers
                 }).Where(x=>x.Totalfreight > 20000);
             foreach (var p in orders)
                 number = p.Totalfreight;
+        }
+
+        //SELECT orderid, orderdate, custid, empid
+        //FROM Sales.Orders
+        //WHERE shippeddate = NULL;
+        private void GetOrdersInfo3()
+        {
+            int number = 0;
+            var orders = db.Orders.Select(o => new
+            {
+                Orderid = o.orderid,
+                Orderdate = o.orderdate,
+                Custid = o.custid,
+                Empid = o.empid,
+                Shippeddate = o.shippeddate
+            }).Where(x => x.Shippeddate == null );
+            foreach (var p in orders)
+                number = p.Orderid;
         }
 
         // GET: Orders/Details/5
