@@ -18,7 +18,7 @@ namespace EF_QueryTests.Controllers
         // GET: Orders
         public async Task<ActionResult> Index()
         {
-            GetOrdersInfo5();
+            GetOrdersInfo6();
             var orders = db.Orders.Include(o => o.Employee).Include(o => o.Customer).Include(o => o.Shipper);
             return View(await orders.ToListAsync());
         }
@@ -108,7 +108,7 @@ namespace EF_QueryTests.Controllers
                 number = p.Orderid;
         }
 
-        //SELECT TOP(1) PERCENT orderid, orderdate, custid, empid
+        //SELECT TOP(9) orderid, orderdate, custid, empid
         //FROM Sales.Orders
         //ORDER BY orderdate DESC;
         private void GetOrdersInfo5()
@@ -127,6 +127,19 @@ namespace EF_QueryTests.Controllers
             var topOrders = orders.OrderByDescending(o => o.Orderdate).Take(9);
             foreach (var p in topOrders)
                 number = p.Orderid;
+        }
+
+        //SELECT orderid, orderdate, custid, empid
+        //FROM Sales.Orders
+        //ORDER BY orderdate DESC, orderid DESC
+        //OFFSET 50 ROWS FETCH NEXT 25 ROWS ONLY;
+        private void GetOrdersInfo6()
+        {
+            int number = 0;
+            var orders = db.Orders.OrderByDescending(o => o.orderdate).ThenByDescending(o => o.orderid).Skip(50).Take(25).ToList();
+
+            foreach (var p in orders)
+                number = p.orderid;
         }
 
         // GET: Orders/Details/5
