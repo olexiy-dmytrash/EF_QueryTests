@@ -20,6 +20,7 @@ namespace EF_QueryTests.Controllers
         {
             GetDistinctCoutry();
             GetEmployeesInfo1();
+            GetEmployeesInfo2();
             var employees = db.Employees.Include(e => e.Employee1);
             return View(await employees.ToListAsync());
         }
@@ -50,6 +51,29 @@ namespace EF_QueryTests.Controllers
             }).OrderBy(p => p.Empid);
             foreach (var p in employees)
                 name = p.Name;
+        }
+
+        //SELECT empid, firstname, lastname, city, MONTH(birthdate) AS birthmonth
+        //FROM HR.Employees
+        //WHERE country = N'USA' AND region = N'WA'
+        //ORDER BY city, empid;
+        private void GetEmployeesInfo2()
+        {
+            var name = "";
+            var employees = db.Employees.Select(p => new
+            {
+                Empid = p.empid,
+                Firstname = p.firstname,
+                Lastname = p.lastname,
+                City = p.city,
+                Birthmonth = p.birthdate.Month,
+                Country = p.country,
+                Region = p.region
+            }).Where(p => p.Country == "USA" && p.Region == "WA")
+            .OrderBy(p=>p.City)
+            .ThenBy(p=>p.Empid);
+            foreach (var p in employees)
+                name = p.Firstname;
         }
 
         // GET: Employees/Details/5
