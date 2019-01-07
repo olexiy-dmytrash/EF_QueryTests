@@ -18,7 +18,7 @@ namespace EF_QueryTests.Controllers
         // GET: Orders
         public async Task<ActionResult> Index()
         {
-            GetOrdersInfo6();
+            GetOrdersInfo7();
             var orders = db.Orders.Include(o => o.Employee).Include(o => o.Customer).Include(o => o.Shipper);
             return View(await orders.ToListAsync());
         }
@@ -140,6 +140,28 @@ namespace EF_QueryTests.Controllers
 
             foreach (var p in orders)
                 number = p.orderid;
+        }
+
+        //SELECT C.custid, C.companyname, O.orderid, O.orderdate
+        //FROM Sales.Customers AS C
+        //INNER JOIN Sales.Orders AS O 
+        //ON C.custid = O.custid;
+        private void GetOrdersInfo7()
+        {
+            int number = 0;
+            var orders = db.Orders.Join(db.Customers, // второй набор
+                    o => o.custid, // свойство-селектор объекта из первого набора
+                    c => c.custid, // свойство-селектор объекта из второго набора
+                    (o, c) => new // результат
+                    {
+                        Custid = c.custid,
+                        Companyname = c.companyname,
+                        Orderid = o.orderid,
+                        Orderdate = o.orderdate
+                    });
+
+            foreach (var o in orders)
+                number = o.Orderid;
         }
 
         // GET: Orders/Details/5
