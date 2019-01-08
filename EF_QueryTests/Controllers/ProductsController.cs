@@ -18,7 +18,7 @@ namespace EF_QueryTests.Controllers
         // GET: Products
         public async Task<ActionResult> Index()
         {
-            GetProductsInfo1();
+            GetProductsInfo2();
             var products = db.Products.Include(p => p.Category).Include(p => p.Supplier);
             return View(await products.ToListAsync());
         }
@@ -54,6 +54,32 @@ namespace EF_QueryTests.Controllers
                 Unitprice = p.unitprice
             }).Where(p=>p.Unitprice == (db.Products.Min(x => x.unitprice)));
              foreach (var p in products)
+                str_productid = String.Format("{0:D10}", p.Productid);
+        }
+
+        //SELECT productid, productname, unitprice
+        //FROM Production.Products 
+        //WHERE supplierid IN   (SELECT supplierid     
+        //                       FROM Production.Suppliers
+        //                       WHERE country = N'Japan');
+
+        private void GetProductsInfo2()
+        {
+            string str_productid = "";
+            var supplierids = db.Suppliers.Select(s => new
+            {
+                Supplierid = s.supplierid,
+                Country = s.country
+            }).Where(s => s.Country == "Japan");
+
+            var products = db.Products.Select(p => new
+            {
+                Productid = p.productid,
+                Productname = p.productname,
+                Unitprice = p.unitprice,
+                Supplierid = p.supplierid
+            }).Where(p => supplierids.Select(x=>x.Supplierid).Contains(p.Supplierid));
+            foreach (var p in products)
                 str_productid = String.Format("{0:D10}", p.Productid);
         }
 
