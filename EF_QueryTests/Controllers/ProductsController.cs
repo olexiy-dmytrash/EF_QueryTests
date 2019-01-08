@@ -18,7 +18,7 @@ namespace EF_QueryTests.Controllers
         // GET: Products
         public async Task<ActionResult> Index()
         {
-            GetProductsInfo();
+            GetProductsInfo1();
             var products = db.Products.Include(p => p.Category).Include(p => p.Supplier);
             return View(await products.ToListAsync());
         }
@@ -36,6 +36,24 @@ namespace EF_QueryTests.Controllers
                     Productid = p.productid
                 });
             foreach (var p in products)
+                str_productid = String.Format("{0:D10}", p.Productid);
+        }
+
+        //SELECT productid, productname, unitprice
+        //FROM Production.Products
+        //WHERE unitprice = (SELECT MIN(unitprice)
+        //                   FROM Production.Products)
+
+        private void GetProductsInfo1()
+        {
+            string str_productid = "";
+            var products = db.Products.Select(p => new
+            {
+                Productid = p.productid,
+                Productname = p.productname,
+                Unitprice = p.unitprice
+            }).Where(p=>p.Unitprice == (db.Products.Min(x => x.unitprice)));
+             foreach (var p in products)
                 str_productid = String.Format("{0:D10}", p.Productid);
         }
 
