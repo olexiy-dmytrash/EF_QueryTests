@@ -18,7 +18,7 @@ namespace EF_QueryTests.Controllers
         // GET: Orders
         public async Task<ActionResult> Index()
         {
-            GetOrdersInfo8();
+            GetOrdersInfo9();
             var orders = db.Orders.Include(o => o.Employee).Include(o => o.Customer).Include(o => o.Shipper);
             return View(await orders.ToListAsync());
         }
@@ -193,6 +193,34 @@ namespace EF_QueryTests.Controllers
             catch (Exception e)
             {
                 var myText = e.Message;
+            }
+        }
+
+        //SELECT C.custid, C.companyname, O.orderid, O.orderdate
+        //FROM Sales.Customers AS C
+        //LEFT OUTER JOIN Sales.Orders AS O
+        //ON C.custid = O.custid
+        //AND O.orderdate >= '20080201'
+        //AND O.orderdate< '20080301';
+        private void GetOrdersInfo9()
+        {
+            int? number = 0;
+            var orders = (from c in db.Customers
+                          join o in db.Orders
+                          on c.custid equals o.custid into joinedT
+                          from pd in joinedT.DefaultIfEmpty()
+                          select new { Custid = c.custid, Companyname = c.companyname, Orderid = pd == null ? 0 : pd.orderid, pd.orderid, Orderdate = pd == null ? DateTime.MinValue : pd.orderdate })
+                          .Where(x => x.Orderdate >= new DateTime(2008, 02, 01) && x.Orderdate <= new DateTime(2008, 03, 01));
+
+
+            foreach (var o in orders)
+            {
+                if (o.Orderid == 0)
+                {
+                    number = o.Orderid;
+                }
+
+
             }
         }
 
